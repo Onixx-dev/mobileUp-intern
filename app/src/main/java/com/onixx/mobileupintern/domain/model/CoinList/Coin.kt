@@ -1,5 +1,6 @@
 package com.onixx.mobileupintern.domain.model.CoinList
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Coin (
@@ -29,6 +30,11 @@ data class Coin (
     @SerializedName("atl_change_percentage"            ) var atlChangePercentage          : Double? = null,
     @SerializedName("atl_date"                         ) var atlDate                      : String? = null,
     @SerializedName("roi"                              ) var roi                          : Roi? = null,
-    @SerializedName("last_updated"                     ) var lastUpdated                  : String? = null
+    @SerializedName("last_updated"                     ) var lastUpdated                  : String? = null,
+
+    @Expose(serialize = false, deserialize = false)
+    var currentPriceStr: String,
+    @Expose(serialize = false, deserialize = false)
+    var percentChangesStr: String
 
 )

@@ -76,6 +76,13 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-scope:2.2.3")
     implementation("io.insert-koin:koin-androidx-viewmodel:2.2.3")
 
+//    glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.skydoves:landscapist-glide:2.3.6")
+
+//    pull-to-refresh
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.27.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

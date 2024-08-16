@@ -26,6 +26,6 @@ class CoinListRepositoryImpl : CoinListRepository {
             count = count
         ).await()
 
-        return result.body() ?: ArrayList<Coin>()
+        return result.body()!!
     }
 }

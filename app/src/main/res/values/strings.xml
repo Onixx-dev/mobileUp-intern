@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MobileUpIntern</string>
+    <string name="error_text_1">Произошла какая-то ошибка :(</string>
+    <string name="error_text_2">Попробуем снова?</string>
+    <string name="error_button_text">Попробовать</string>
+
+    <string name="topbar_text_main">Список криптовалют</string>
+    <string name="topbar_button_usd">USD</string>
+    <string name="topbar_button_rub">RUB</string>
+
 </resources>
