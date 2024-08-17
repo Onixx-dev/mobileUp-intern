@@ -20,8 +20,14 @@ import com.onixx.mobileupintern.R
 
 //@Preview
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier, refreshAction : () -> Unit) {
+fun ErrorScreen(
+    modifier: Modifier = Modifier,
+    refreshAction : () -> Unit)
+{
+
     val context = LocalContext.current
+
+
     Column(
         modifier = modifier
             .fillMaxSize(),
@@ -59,5 +65,6 @@ fun ErrorScreen(modifier: Modifier = Modifier, refreshAction : () -> Unit) {
         )
 
     }
+
 
 }

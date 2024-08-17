@@ -1,5 +1,6 @@
 package com.onixx.mobileupintern.presentation.screens.CoinsListScreen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,12 +32,18 @@ val ROW_HEIGHT_DP = 60.dp
 
 
 @Composable
-fun CoinListItem(modifier: Modifier = Modifier, coin: Coin, numberFormat: NumberFormat) {
+fun CoinListItem(modifier: Modifier = Modifier,
+                 coin: Coin,
+                 onItemClick: (String) -> Unit) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(5.dp)
             .height(ROW_HEIGHT_DP)
+            .clickable {
+                if (coin.id != null)
+                    onItemClick(coin.id!!)
+            }
     ) {
 
         GlideImage(

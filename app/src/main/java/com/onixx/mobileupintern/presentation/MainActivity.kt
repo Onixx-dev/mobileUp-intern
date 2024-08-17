@@ -1,4 +1,4 @@
-package com.onixx.mobileupintern
+package com.onixx.mobileupintern.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -30,24 +30,23 @@ class MainActivity : ComponentActivity() {
             MobileUpInternTheme {
                 navController = rememberNavController()
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {CurrencyTopBar(
-                        modifier = Modifier,
-                        items = vm.currencyArray,
-                        onChipClick = {vm.changeBaseCurrency(it)})}
+                    modifier = Modifier.fillMaxSize()
+//                    topBar = {CurrencyTopBar(
+//                        modifier = Modifier,
+//                        items = vm.currencyArray,
+//                        onChipClick = {vm.changeBaseCurrency(it)})
+//                    }
                 ) { padding ->
                     Box(modifier = Modifier.padding(padding)) {
                         SetupNavGraph(
                             navHostController = navController,
                             currencyViewModel = vm
                         )
-                        vm.getCoinList()
+//                        vm.getCoinList()
                     }
                 }
             }
         }
-
-//        vm.getCoinList()
-//        vm.getCoinInfo()
+        vm.getCoinList()
     }
 }

@@ -1,6 +1,5 @@
 package com.onixx.mobileupintern.presentation.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.onixx.mobileupintern.domain.usecase.ItemSelectedUseCase
 import com.onixx.mobileupintern.domain.usecase.UploadCoinsUseCase
-import com.onixx.mobileupintern.presentation.viewmodel.states.InfoScreenStates
+import com.onixx.mobileupintern.presentation.screens.states.CoinInfoScreenStates
+import com.onixx.mobileupintern.presentation.screens.states.CoinListScreenStates
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,18 +24,19 @@ class CurrencyViewModel(
 ) : ViewModel() {
 
 
-    var infoScreenStates: InfoScreenStates by mutableStateOf(InfoScreenStates.Loading)
+    var coinListScreenStates: CoinListScreenStates by mutableStateOf(CoinListScreenStates.Loading)
+    var coinInfoScreenStates: CoinInfoScreenStates by mutableStateOf(CoinInfoScreenStates.Loading)
 
     private val _isLoading = MutableStateFlow(false)
     var isLoading = _isLoading.asStateFlow()
 
 
-    var numberFormat = NumberFormat.getCurrencyInstance(Locale.US)
+    var numberFormat: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
     val currencyArray = arrayListOf("usd", "rub")
 
     private val uploadCount = 30
     private var currencyName: String by mutableStateOf(currencyArray.first())
-    private val coinName = "bitcoin"
+    var coinName = "bitcoin"
 
 
     fun changeBaseCurrency(newCurrency: String) {
@@ -48,11 +49,13 @@ class CurrencyViewModel(
         getCoinList()
     }
 
+
+
     fun getCoinList() {
-        infoScreenStates = InfoScreenStates.Loading
+        coinListScreenStates = CoinListScreenStates.Loading
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                infoScreenStates =
+                coinListScreenStates =
                     try {
                         val list = uploadCoinsUseCase.execute(currencyName, uploadCount)
                         var prefix: String
@@ -71,20 +74,20 @@ class CurrencyViewModel(
                                 append("%")
                             }
                         }
-                        InfoScreenStates.Success(list)
+                        CoinListScreenStates.Success(list)
                     } catch (e: Exception) {
-                        InfoScreenStates.Error(refreshAction = { getCoinList() })
+                        CoinListScreenStates.Error(refreshAction = { getCoinList() })
                     }
             }
         }
     }
 
-    fun RefreshCoinList() {
+    fun refreshCoinList() {
         _isLoading.value = true
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                infoScreenStates =
+                coinListScreenStates =
                     try {
                         val list = uploadCoinsUseCase.execute(currencyName, uploadCount)
                         var prefix: String
@@ -103,9 +106,9 @@ class CurrencyViewModel(
                                 append("%")
                             }
                         }
-                        InfoScreenStates.Success(list)
+                        CoinListScreenStates.Success(list)
                     } catch (e: Exception) {
-                        InfoScreenStates.Error(refreshAction = { getCoinList() })
+                        CoinListScreenStates.Error(refreshAction = { getCoinList() })
                     } finally {
                         _isLoading.value = false
                     }
@@ -113,13 +116,26 @@ class CurrencyViewModel(
         }
     }
 
-    fun getCoinInfo() {
+
+
+    fun getCoinInfo(id : String = coinName) {
+        coinName = id
+        coinInfoScreenStates = CoinInfoScreenStates.Loading
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val temp = itemSelectedUseCase.execute(coinName)
-                Log.d("----info", temp.toString())
+                coinInfoScreenStates =
+                    try {
+                        val coinInfo = itemSelectedUseCase.execute(coinName)
+                        CoinInfoScreenStates.Success(coinInfo)
+                    } catch (e: Exception) {
+                        CoinInfoScreenStates.Error(refreshAction = { getCoinList() })
+                    }
             }
         }
+    }
+
+    fun refreshCoinInfo(){
+
     }
 
 

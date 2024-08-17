@@ -22,8 +22,8 @@ import java.text.NumberFormat
 fun MainListScreen(
     modifier: Modifier,
     coins: ArrayList<Coin>,
-    numberFormat: NumberFormat,
-    viewModel: CurrencyViewModel
+    viewModel: CurrencyViewModel,
+    onListItemClick: (String) -> Unit
 ) {
     Box(modifier = modifier) {
         val isLoading by viewModel.isLoading.collectAsState()
@@ -31,7 +31,7 @@ fun MainListScreen(
 
         SwipeRefresh(
             state = swipeRefreshState,
-            onRefresh = { viewModel.RefreshCoinList() })
+            onRefresh = { viewModel.refreshCoinList() })
         {
             LazyColumn(
                 Modifier
@@ -39,7 +39,9 @@ fun MainListScreen(
                     .padding(10.dp)
             ) {
                 items(coins.toList()) { coin ->
-                    CoinListItem(coin = coin, numberFormat = numberFormat)
+                    CoinListItem(
+                        coin = coin,
+                        onItemClick = onListItemClick)
                 }
             }
         }

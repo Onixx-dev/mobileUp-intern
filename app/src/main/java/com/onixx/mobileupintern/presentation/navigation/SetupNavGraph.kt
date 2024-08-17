@@ -1,5 +1,7 @@
 package com.onixx.mobileupintern.presentation.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -16,11 +18,18 @@ fun SetupNavGraph(navHostController: NavHostController, currencyViewModel: Curre
         startDestination = ScreenItem.ListPage.route
     )
     {
-        composable(route = ScreenItem.ListPage.route) {
-            HostListScreen(modifier = modifier, currencyViewModel)
+        composable(
+            route = ScreenItem.ListPage.route,
+            enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+        ) {
+            HostListScreen(modifier = modifier, navHostController , currencyViewModel)
         }
-        composable(route = ScreenItem.InfoPage.route) {
-            HostInfoScreen(modifier = modifier)
+        composable(route = ScreenItem.InfoPage.route,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
+            HostInfoScreen(modifier = modifier, navHostController , currencyViewModel)
         }
 
     }

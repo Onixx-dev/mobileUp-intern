@@ -30,5 +30,4 @@ data class CoinInfo (
   @SerializedName("market_cap_rank"                 ) var marketCapRank                : Int?              = null,
   @SerializedName("status_updates"                  ) var statusUpdates                : ArrayList<String> = arrayListOf(),
   @SerializedName("last_updated"                    ) var lastUpdated                  : String?           = null
-
 )
