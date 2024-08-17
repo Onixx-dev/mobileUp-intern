@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -15,9 +14,13 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.onixx.mobileupintern.domain.model.CoinList.Coin
 import com.onixx.mobileupintern.presentation.viewmodel.CurrencyViewModel
-import java.text.NumberFormat
 
-@OptIn(ExperimentalMaterial3Api::class)
+/**
+ * основной экран, отображающий список валют и котировок
+ * @param onListItemClick - лямбда, вызываемая элементом списка при нажатии по нему
+ * @see CoinListItem
+ * @see CurrencyViewModel.coinListScreenStates
+ */
 @Composable
 fun MainListScreen(
     modifier: Modifier,

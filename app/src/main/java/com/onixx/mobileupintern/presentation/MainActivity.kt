@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.onixx.mobileupintern.presentation.navigation.SetupNavGraph
-import com.onixx.mobileupintern.presentation.screens.shared.CurrencyTopBar
 import com.onixx.mobileupintern.presentation.theme.MobileUpInternTheme
 import com.onixx.mobileupintern.presentation.viewmodel.CurrencyViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,18 +30,12 @@ class MainActivity : ComponentActivity() {
                 navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
-//                    topBar = {CurrencyTopBar(
-//                        modifier = Modifier,
-//                        items = vm.currencyArray,
-//                        onChipClick = {vm.changeBaseCurrency(it)})
-//                    }
                 ) { padding ->
                     Box(modifier = Modifier.padding(padding)) {
                         SetupNavGraph(
                             navHostController = navController,
                             currencyViewModel = vm
                         )
-//                        vm.getCoinList()
                     }
                 }
             }

@@ -25,12 +25,21 @@ import com.onixx.mobileupintern.presentation.theme.TextColorPositive
 import com.onixx.mobileupintern.presentation.theme.Typography
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
-import java.text.NumberFormat
 
 
+/**
+ * константа высоты элемента списка
+ */
 val ROW_HEIGHT_DP = 60.dp
 
 
+/**
+ * верстка элемента списка. В Row изображение, и две колонки по 2 элемента с текстом
+ * @param coin - модель данных
+ * @param onItemClick - лямбда на клин по данному элементу списка.
+ * Вызывает переход в окно информации, передает в него id, связывающий эту модель и модель расширенных данных в API
+ * @see CurrencyViewModel.getCoinInfo
+ */
 @Composable
 fun CoinListItem(modifier: Modifier = Modifier,
                  coin: Coin,
@@ -47,8 +56,7 @@ fun CoinListItem(modifier: Modifier = Modifier,
     ) {
 
         GlideImage(
-            modifier = modifier
-                .size(ROW_HEIGHT_DP),
+            modifier = modifier.size(ROW_HEIGHT_DP),
             imageModel = { coin.image },
             imageOptions = ImageOptions(
                 contentScale = ContentScale.Crop,

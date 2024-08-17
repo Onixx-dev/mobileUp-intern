@@ -31,7 +31,14 @@ import com.onixx.mobileupintern.presentation.theme.ChipsEnableColorBackground
 import com.onixx.mobileupintern.presentation.theme.ChipsEnableColorText
 import com.onixx.mobileupintern.presentation.theme.Typography
 
-//@Preview
+/**
+ * TopBar для экрана списка валют. Содержит в себе контейнер chip'ов.
+ * @param items - список возможных базисных валют(см. CurrencyViewModel.currencyArray)
+ * @param onChipClick - лямбда изменения базисной валюты. Аргументы см. CurrencyViewModel.changeBaseCurrency
+ *
+ * @see CurrencyViewModel.currencyArray
+ * @see CurrencyViewModel.changeBaseCurrency
+ */
 @Composable
 fun CurrencyTopBar(
     modifier: Modifier = Modifier,
@@ -61,6 +68,12 @@ fun CurrencyTopBar(
     }
 }
 
+
+
+/**
+ * контейнер chip'ов, запоминает выбранный и генерирует разметку на основе данных из CurrencyViewModel.currencyArray
+ * @see CurrencyViewModel.currencyArray
+ */
 @Composable
 fun ChipGroupCompose(
     modifier: Modifier,
@@ -88,6 +101,8 @@ fun ChipGroupCompose(
     }
 
 }
+
+
 
 @Composable
 fun Chip(

@@ -1,7 +1,6 @@
 package com.onixx.mobileupintern.presentation.screens.states
 
 import com.onixx.mobileupintern.domain.model.CoinInfo
-import com.onixx.mobileupintern.domain.model.CoinList.Coin
 
 
 sealed class CoinInfoScreenStates {

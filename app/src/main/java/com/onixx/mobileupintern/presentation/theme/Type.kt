@@ -7,6 +7,10 @@ import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+
+    /**
+     * текст основных данных
+     */
     bodyLarge = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,
@@ -15,6 +19,10 @@ val Typography = Typography(
         letterSpacing = 0.25.sp
     ),
 
+
+    /**
+     * более мелкий шрифт для вторичных данных
+     */
     bodyMedium = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,
@@ -23,6 +31,9 @@ val Typography = Typography(
         letterSpacing = 0.25.sp
     ),
 
+    /**
+     * шрифт для заголовков
+     */
     titleLarge = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Bold,

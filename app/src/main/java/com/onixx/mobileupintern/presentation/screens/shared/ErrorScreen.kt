@@ -18,7 +18,10 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.style.TextAlign
 import com.onixx.mobileupintern.R
 
-//@Preview
+/**
+ * Общий экран для любых ошибок. В аргкменты принимает лямбду, которая сработает при нажатии кнопки "Повторить"
+ * @param refreshAction - лямбда действия "попытаться еще раз"
+ */
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,
